@@ -147,6 +147,18 @@ class _SnakeGameState extends State<SnakeGame> {
       backgroundColor: Colors.black,
       body: Column(
         children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(top: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'Highscore: ${_getHighscore()}',
+                  style: fontStyle,
+                ),
+              ],
+            ),
+          ),
           Expanded(
             child: GestureDetector(
               onVerticalDragUpdate: (details) {
@@ -164,7 +176,7 @@ class _SnakeGameState extends State<SnakeGame> {
                 }
               },
               child: AspectRatio(
-                aspectRatio: squaresPerRow / (squaresPerCol + 5),
+                aspectRatio: squaresPerRow / (squaresPerCol + 2),
                 child: GridView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -189,13 +201,13 @@ class _SnakeGameState extends State<SnakeGame> {
                       } else if (isSnakeBody) {
                         color = Colors.green[100];
                       } else if (food[0] == x && food[1] == y) {
-                        color = Colors.red;
+                        color = Colors.yellow;
                       } else {
-                        color = Colors.grey[800];
+                        color = Colors.white38;
                       }
 
                       return Container(
-                        margin: EdgeInsets.all(1),
+                        margin: EdgeInsets.all(0.5),
                         decoration: BoxDecoration(
                           color: color,
                           shape: BoxShape.circle,
@@ -230,18 +242,6 @@ class _SnakeGameState extends State<SnakeGame> {
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(bottom: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'Highscore: ${_getHighscore()}',
-                  style: fontStyle,
-                ),
-              ],
-            ),
-          )
         ],
       ),
     );
